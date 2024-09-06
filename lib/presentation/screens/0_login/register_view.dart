@@ -1,4 +1,4 @@
-// import 'package:chambeape/infrastructure/models/users.dart';
+import 'package:chambeape/infrastructure/models/users.dart';
 import 'dart:io';
 import 'package:chambeape/infrastructure/models/users.dart';
 import 'package:chambeape/presentation/screens/0_login/widgets/custom_radio_list_tile.dart';
@@ -6,7 +6,7 @@ import 'package:chambeape/presentation/screens/0_login/widgets/image_picker_widg
 import 'package:chambeape/presentation/shared/enums/enum.dart';
 import 'package:chambeape/presentation/shared/utils/custom_validators.dart';
 import 'package:chambeape/services/media/MediaService.dart';
-// import 'package:chambeape/services/users/user_service.dart';
+import 'package:chambeape/services/users/user_service.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -283,24 +283,23 @@ class _RegisterViewState extends State<RegisterView> {
                           dni: dniController.text,
                           password: passwordController.text,
                         );
-                        //TODO: uncomment when UserService is implemented
-                        // UserService().postUser(newUser).then(
-                        //   (_) {
-                        //     ScaffoldMessenger.of(context).showSnackBar(
-                        //       const SnackBar(
-                        //         content: Text('Usuario registrado'),
-                        //       ),
-                        //     );
-                        //     Navigator.pop(context);
-                        //   },
-                        // ).catchError((error) {
-                        //   ScaffoldMessenger.of(context).showSnackBar(
-                        //     SnackBar(
-                        //       content: Text(
-                        //           'Error al registrar usuario: ${error.message}'),
-                        //     ),
-                        //   );
-                        // });
+                        UserService().postUser(newUser).then(
+                          (_) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Usuario registrado'),
+                              ),
+                            );
+                            Navigator.pop(context);
+                          },
+                        ).catchError((error) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  'Error al registrar usuario: ${error.message}'),
+                            ),
+                          );
+                        });
                       } else if (tosAccepted == false) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

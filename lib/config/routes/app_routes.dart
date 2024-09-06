@@ -18,7 +18,6 @@ final routes = <GoRoute>[
     name: CustomNavbar.routeName,
     builder: (context, state) => const CustomNavbar(),
   ),
-  //TODO: Uncomment this code when the views are created
   GoRoute(
     path: '/home',
     name: HomeView.routeName,
@@ -39,29 +38,29 @@ final routes = <GoRoute>[
     name: PostView.routeName,
     builder: (context, state) => const PostView(),
   ),
-  // GoRoute(
-  //   path: '/deals',
-  //   name: DealView.routeName,
-  //   builder: (context, state) => const DealView(),
-  // ),
+  GoRoute(
+    path: '/deals',
+    name: DealView.routeName,
+    builder: (context, state) => const DealView(),
+  ),
   GoRoute(
     path: '/profile',
     name: ProfileView.routeName,
     builder: (context, state) => const ProfileView(),
   ),
-  // GoRoute(
-  //   path: '/chat',
-  //   name: ChatListView.routeName,
-  //   builder: (context, state) => const ChatListView(),
-  // ),
-  // GoRoute(
-  //   path: '/options',
-  //   name: OptionsView.routeName,
-  //   builder: (context, state) => const OptionsView(),
-  // ),
-  // GoRoute(
-  //   path: '/postulation',
-  //   name: PostulationView.routeName,
-  //   builder: (context, state) => const PostulationView(),
-  // ),
+  GoRoute(
+    path: '/chat',
+    name: ChatListView.routeName,
+    builder: (context, state) => const ChatListView(),
+  ),
+  GoRoute(
+    path: '/options',
+    name: OptionsView.routeName,
+    builder: (context, state) => const OptionsView(),
+  ),
+  GoRoute(
+    path: '/postulation',
+    name: PostulationView.routeName,
+    builder: (context, state) => const PostulationView(),
+  ),
 ];

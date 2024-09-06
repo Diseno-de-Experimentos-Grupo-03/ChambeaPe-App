@@ -1,7 +1,7 @@
 import 'package:chambeape/config/databases/db_helper.dart';
 import 'package:chambeape/infrastructure/models/workers.dart';
-// import 'package:chambeape/presentation/screens/5_profile/profile_view.dart';
-// import 'package:chambeape/presentation/screens/chat/chat_view.dart';
+import 'package:chambeape/presentation/screens/5_profile/profile_view.dart';
+import 'package:chambeape/presentation/screens/chat/chat_view.dart';
 import 'package:flutter/material.dart';
 
 class UserCardWidget extends StatefulWidget {
@@ -56,15 +56,14 @@ class _UserCardWidgetState extends State<UserCardWidget> {
                     children: [
                       _WorkersButton(
                         onPressed: () {
-                          //TODO: Uncomment this when ChatView is implemented
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => ChatView(
-                          //       otherUser: widget.worker.toUser(),
-                          //     ),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChatView(
+                                otherUser: widget.worker.toUser(),
+                              ),
+                            ),
+                          );
                         },
                         text: 'Chat',
                       ),
@@ -72,15 +71,14 @@ class _UserCardWidgetState extends State<UserCardWidget> {
                       _WorkersButton(
                         onPressed: () async {
                           await dbHelper.insertUser(widget.worker.toUser());
-                          //TODO: Uncomment this when ProfileView is implemented
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => ProfileView(
-                          //       userId: widget.worker.id,
-                          //     ),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileView(
+                                userId: widget.worker.id,
+                              ),
+                            ),
+                          );
                         },
                         text: 'Ver Perfil',
                       ),
