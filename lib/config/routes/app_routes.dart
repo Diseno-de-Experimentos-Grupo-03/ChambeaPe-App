@@ -19,21 +19,21 @@ final routes = <GoRoute>[
     builder: (context, state) => const CustomNavbar(),
   ),
   //TODO: Uncomment this code when the views are created
-  // GoRoute(
-  //   path: '/home',
-  //   name: HomeView.routeName,
-  //   builder: (context, state) => const HomeView(),
-  // ),
+  GoRoute(
+    path: '/home',
+    name: HomeView.routeName,
+    builder: (context, state) => const HomeView(),
+  ),
   GoRoute(
     path: '/login',
     name: LoginView.routeName,
     builder: (context, state) => const LoginView(),
   ),
-  // GoRoute(
-  //   path: '/workers',
-  //   name: WorkersView.routeName,
-  //   builder: (context, state) => const WorkersView(),
-  // ),
+  GoRoute(
+    path: '/workers',
+    name: WorkersView.routeName,
+    builder: (context, state) => const WorkersView(),
+  ),
   // GoRoute(
   //   path: '/posts',
   //   name: PostView.routeName,
