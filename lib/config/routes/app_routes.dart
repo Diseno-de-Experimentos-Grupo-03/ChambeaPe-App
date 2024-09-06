@@ -44,11 +44,11 @@ final routes = <GoRoute>[
   //   name: DealView.routeName,
   //   builder: (context, state) => const DealView(),
   // ),
-  // GoRoute(
-  //   path: '/profile',
-  //   name: ProfileView.routeName,
-  //   builder: (context, state) => const ProfileView(),
-  // ),
+  GoRoute(
+    path: '/profile',
+    name: ProfileView.routeName,
+    builder: (context, state) => const ProfileView(),
+  ),
   // GoRoute(
   //   path: '/chat',
   //   name: ChatListView.routeName,
