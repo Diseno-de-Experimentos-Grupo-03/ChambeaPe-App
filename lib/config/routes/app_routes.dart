@@ -29,11 +29,11 @@ final routes = <GoRoute>[
     name: LoginView.routeName,
     builder: (context, state) => const LoginView(),
   ),
-  // GoRoute(
-  //   path: '/workers',
-  //   name: WorkersView.routeName,
-  //   builder: (context, state) => const WorkersView(),
-  // ),
+  GoRoute(
+    path: '/workers',
+    name: WorkersView.routeName,
+    builder: (context, state) => const WorkersView(),
+  ),
   // GoRoute(
   //   path: '/posts',
   //   name: PostView.routeName,
