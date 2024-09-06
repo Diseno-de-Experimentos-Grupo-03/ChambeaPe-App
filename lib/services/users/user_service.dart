@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:chambeape/config/utils/login_user_data.dart';
 import 'package:chambeape/infrastructure/models/login/login_response.dart';
 import 'package:chambeape/infrastructure/models/users.dart';
-// import 'package:chambeape/services/chat/chat_list_service.dart';
+import 'package:chambeape/services/chat/chat_list_service.dart';
 import 'package:http/http.dart' as http;
 
 class UserService {
@@ -48,27 +48,28 @@ class UserService {
     }
   }
 
-  // TODO Uncomment this method when ChatListService is implemented
-  // Future<List<Users>> getExistingChatUsers() async {
-  //   LoginResponse user = LoginData().user;
-  //   user = await LoginData().loadSession();
-  //   var userId = user.id;
-    
-  //   ChatListService chatListService = ChatListService();
-  //   List<String> existingChatUsersId = await chatListService.getExistingChatUsersId(userId.toString());
-  //   List<Users> existingChatUsers = [];
+  Future<List<Users>> getExistingChatUsers() async {
+    LoginResponse user = LoginData().user;
+    user = await LoginData().loadSession();
+    var userId = user.id;
 
-  //   for (var id in existingChatUsersId){
-  //     final response = await http.get(Uri.parse('$uri/$id'));
+    ChatListService chatListService = ChatListService();
+    List<String> existingChatUsersId =
+        await chatListService.getExistingChatUsersId(userId.toString());
+    List<Users> existingChatUsers = [];
 
-  //     if (response.statusCode >= 200 && response.statusCode < 300) {
-  //       existingChatUsers.add(Users.fromJson(json.decode(utf8.decode(response.bodyBytes))));
-  //     } else {
-  //       throw Exception(
-  //           'Failed to fetch user by id: Status Code ${response.statusCode}, Response Body: ${response.body}');
-  //     }
-  //   }
+    for (var id in existingChatUsersId) {
+      final response = await http.get(Uri.parse('$uri/$id'));
 
-  //   return existingChatUsers;
-  // }
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        existingChatUsers
+            .add(Users.fromJson(json.decode(utf8.decode(response.bodyBytes))));
+      } else {
+        throw Exception(
+            'Failed to fetch user by id: Status Code ${response.statusCode}, Response Body: ${response.body}');
+      }
+    }
+
+    return existingChatUsers;
+  }
 }
