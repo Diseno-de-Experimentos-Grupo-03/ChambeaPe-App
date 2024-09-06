@@ -22,7 +22,7 @@ class CustomNavbar extends ConsumerWidget {
       const PostView(),
       // const ChatListView(),
       // const DealView(),
-      // const ProfileView()
+      const ProfileView()
     ];
 
     return Scaffold(
@@ -40,14 +40,17 @@ class CustomNavbar extends ConsumerWidget {
         onGenerateRoute: (settings) {
           Widget page = screens[selectedIndex];
           //TODO: Uncomment this code when the views are created
-          // if (settings.name == ProfileView.routeName) {
-          //   page = const ProfileView();
-          // } else if (settings.name == ChatView.routeName) {
+          if (settings.name == ProfileView.routeName) {
+            page = const ProfileView();
+          }
+          // else if (settings.name == ChatView.routeName) {
           //   final chatUser = settings.arguments as Users;
           //   page = ChatView(otherUser: chatUser);
-          // } else if (settings.name == OptionsView.routeName) {
-          //   page = const OptionsView();
-          // } else if (settings.name == PostulationView.routeName) {
+          // }
+          else if (settings.name == OptionsView.routeName) {
+            page = const OptionsView();
+          }
+          //  else if (settings.name == PostulationView.routeName) {
           //   page = const PostulationView();
           // }
           return MaterialPageRoute(builder: (_) => page);
