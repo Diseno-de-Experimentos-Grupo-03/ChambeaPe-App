@@ -17,11 +17,10 @@ class CustomNavbar extends ConsumerWidget {
     final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
     final screens = [
-      //TODO: Uncomment this code when the views are created
       const HomeView(),
       const PostView(),
-      // const ChatListView(),
-      // const DealView(),
+      const ChatListView(),
+      const DealView(),
       const ProfileView()
     ];
 
@@ -39,20 +38,16 @@ class CustomNavbar extends ConsumerWidget {
         key: navigatorKey,
         onGenerateRoute: (settings) {
           Widget page = screens[selectedIndex];
-          //TODO: Uncomment this code when the views are created
           if (settings.name == ProfileView.routeName) {
             page = const ProfileView();
-          }
-          // else if (settings.name == ChatView.routeName) {
-          //   final chatUser = settings.arguments as Users;
-          //   page = ChatView(otherUser: chatUser);
-          // }
-          else if (settings.name == OptionsView.routeName) {
+          } else if (settings.name == ChatView.routeName) {
+            final chatUser = settings.arguments as Users;
+            page = ChatView(otherUser: chatUser);
+          } else if (settings.name == OptionsView.routeName) {
             page = const OptionsView();
+          } else if (settings.name == PostulationView.routeName) {
+            page = const PostulationView();
           }
-          //  else if (settings.name == PostulationView.routeName) {
-          //   page = const PostulationView();
-          // }
           return MaterialPageRoute(builder: (_) => page);
         },
       ),
