@@ -19,7 +19,7 @@ class CustomNavbar extends ConsumerWidget {
     final screens = [
       //TODO: Uncomment this code when the views are created
       const HomeView(),
-      // const PostView(),
+      const PostView(),
       // const ChatListView(),
       // const DealView(),
       // const ProfileView()
