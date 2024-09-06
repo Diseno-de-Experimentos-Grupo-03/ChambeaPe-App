@@ -1,6 +1,7 @@
 import 'package:chambeape/config/menu/menu_items.dart';
 import 'package:chambeape/infrastructure/models/users.dart';
 import 'package:chambeape/presentation/providers/navigation_provider.dart';
+import 'package:chambeape/presentation/screens/1_home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,7 +18,7 @@ class CustomNavbar extends ConsumerWidget {
 
     final screens = [
       //TODO: Uncomment this code when the views are created
-      // const HomeView(),
+      const HomeView(),
       // const PostView(),
       // const ChatListView(),
       // const DealView(),
