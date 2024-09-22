@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:chambeape/infrastructure/models/employers.dart';
 
 Future<List<Employers>> getEmployers() async {
-  final uri = Uri.parse('https://chambeape.azurewebsites.net/api/v1/employers');
+  final uri = Uri.parse('https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/employers');
   final response = await http.get(uri);
 
   if (response.statusCode == 200) {

@@ -6,7 +6,7 @@ import 'package:chambeape/presentation/shared/enums/enum.dart';
 import 'package:http/http.dart' as http;
 
 class NegotiationService {
-  final uri = Uri.parse('https://chambeape.azurewebsites.net/api/v1/contracts');
+  final uri = Uri.parse('https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/contracts');
 
   Future<Negotiation> createNegotiation(Negotiation negotiation) async {
     final response = await http.post(

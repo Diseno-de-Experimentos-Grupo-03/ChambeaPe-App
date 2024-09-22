@@ -3,7 +3,7 @@ import 'package:chambeape/infrastructure/models/workers.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Workers>> getWorkers() async {
-  final uri = Uri.parse('https://chambeape.azurewebsites.net/api/v1/workers');
+  final uri = Uri.parse('https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/workers');
   final response = await http.get(uri);
 
   if (response.statusCode == 200) {

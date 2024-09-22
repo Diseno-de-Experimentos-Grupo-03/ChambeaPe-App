@@ -7,7 +7,7 @@ import 'package:chambeape/services/chat/chat_list_service.dart';
 import 'package:http/http.dart' as http;
 
 class UserService {
-  final uri = Uri.parse('https://chambeape.azurewebsites.net/api/v1/users');
+  final uri = Uri.parse('https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/users');
 
   Future<List<Users>> getUsers() async {
     final response = await http.get(uri);
