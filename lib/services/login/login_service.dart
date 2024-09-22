@@ -12,7 +12,7 @@ Future<Login> login(String email, String password) async {
     'password': password,
   };
 
-  final uri = Uri.parse('https://chambeape.azurewebsites.net/api/v1/users/login');
+  final uri = Uri.parse('https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/users/login');
 
   final response = await http.post(
     uri,

@@ -27,7 +27,14 @@ class _LoginViewState extends State<LoginView> {
         if (context.mounted) {
           context.goNamed(CustomNavbar.routeName);
         }
-      } catch (e) {}
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
