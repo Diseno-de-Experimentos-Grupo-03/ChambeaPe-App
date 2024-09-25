@@ -29,8 +29,8 @@ class _LoginViewState extends State<LoginView> {
         }
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(e.toString()),
+          const SnackBar(
+            content: Text("Datos incorrectos"), 
             backgroundColor: Colors.red,
           ),
         );
