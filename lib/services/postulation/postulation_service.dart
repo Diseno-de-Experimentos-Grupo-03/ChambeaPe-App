@@ -1,13 +1,17 @@
 import 'dart:convert';
-
 import 'package:chambeape/config/constats/environmet.dart';
 import 'package:http/http.dart' as http;
 
 class PostulationService {
-  Future<void> createPostulation(int postId, int workerId) async {
-    final uri = Uri.parse('${UriEnvironment.baseUrl}/posts/$postId/postulations/$workerId');
+  final http.Client? client;
 
-    final response = await http.post(
+  PostulationService({this.client});
+
+  Future<void> createPostulation(int postId, int workerId) async {
+    final uri = Uri.parse(
+        '${UriEnvironment.baseUrl}/posts/$postId/postulations/$workerId');
+
+    final response = await (client ?? http.Client()).post(
       uri,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -24,11 +28,10 @@ class PostulationService {
   }
 
   Future<void> deletePostulation(int postId, int workerId) async {
-    final uri = Uri.parse('${UriEnvironment.baseUrl}/posts/$postId/postulations/$workerId');
+    final uri = Uri.parse(
+        '${UriEnvironment.baseUrl}/posts/$postId/postulations/$workerId');
 
-    final response = await http.delete(
-      uri,
-    );
+    final response = await (client ?? http.Client()).delete(uri);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return;
@@ -42,7 +45,8 @@ class PostulationService {
     List<dynamic> postulations = await getPostulationsByPostId(postId);
 
     for (var postulation in postulations) {
-      if (postulation['worker']['id'] == workerId && postulation['postId'] == postId) {
+      if (postulation['worker']['id'] == workerId &&
+          postulation['postId'] == postId) {
         return postulation;
       }
     }
@@ -50,9 +54,10 @@ class PostulationService {
   }
 
   Future<List<dynamic>> getPostulationsByPostId(int postId) async {
-    final uri = Uri.parse('${UriEnvironment.baseUrl}/posts/$postId/postulations');
+    final uri =
+        Uri.parse('${UriEnvironment.baseUrl}/posts/$postId/postulations');
 
-    final response = await http.get(
+    final response = await (client ?? http.Client()).get(
       uri,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -69,22 +74,22 @@ class PostulationService {
   }
 
   Future<List<dynamic>> getPostulationsByWorkerId(int workerId) async {
-  final uri = Uri.parse('${UriEnvironment.baseUrl}/postulations')
-      .replace(queryParameters: {'userId': workerId.toString()});
+    final uri = Uri.parse('${UriEnvironment.baseUrl}/postulations')
+        .replace(queryParameters: {'userId': workerId.toString()});
 
-  final response = await http.get(
-    uri,
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-  );
+    final response = await (client ?? http.Client()).get(
+      uri,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
 
-  if (response.statusCode >= 200 && response.statusCode < 300) {
-    List<dynamic> postulations = json.decode(utf8.decode(response.bodyBytes));
-    return postulations;
-  } else {
-    throw Exception(
-        'Failed to fetch postulations: Status Code ${response.statusCode}, Response Body: ${response.body}');
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      List<dynamic> postulations = json.decode(utf8.decode(response.bodyBytes));
+      return postulations;
+    } else {
+      throw Exception(
+          'Failed to fetch postulations: Status Code ${response.statusCode}, Response Body: ${response.body}');
+    }
   }
-}
 }
