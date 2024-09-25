@@ -25,8 +25,8 @@ class CloudApi {
   Future<ObjectInfo> save(String name, Uint8List fileBytes) async {
     client ??= await auth.clientViaServiceAccount(credentials, Storage.SCOPES);
 
-    var storage = Storage(client!, 'chambea-pe-app');
-    var bucket = storage.bucket('chambeape-files');
+    var storage = Storage(client!, 'chambeape-cloud');
+    var bucket = storage.bucket('chambeape-cloud-storage');
     final type = lookupMimeType(name);
     return await bucket.writeBytes(name, fileBytes, metadata: ObjectMetadata(contentType: type));
   }
