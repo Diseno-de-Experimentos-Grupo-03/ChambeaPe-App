@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:chambeape/config/utils/login_user_data.dart';
 import 'package:chambeape/infrastructure/models/login/login_response.dart';
 import 'package:chambeape/infrastructure/models/users.dart';
@@ -7,10 +6,14 @@ import 'package:chambeape/services/chat/chat_list_service.dart';
 import 'package:http/http.dart' as http;
 
 class UserService {
-  final uri = Uri.parse('https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/users');
+  final Uri uri = Uri.parse(
+      'https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/users');
+  final http.Client? client;
+
+  UserService({this.client});
 
   Future<List<Users>> getUsers() async {
-    final response = await http.get(uri);
+    final response = await (client ?? http.Client()).get(uri);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       List<dynamic> body = json.decode(utf8.decode(response.bodyBytes));
@@ -24,12 +27,13 @@ class UserService {
   }
 
   Future<Users> postUser(Users user) async {
-    final response = await http.post(uri,
-        body: json.encode(user.toJson()),
-        headers: {'Content-Type': 'application/json'});
+    final response = await (client ?? http.Client()).post(
+      uri,
+      body: json.encode(user.toJson()),
+      headers: {'Content-Type': 'application/json'},
+    );
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      print('User posted successfully');
       return Users.fromJson(json.decode(utf8.decode(response.bodyBytes)));
     } else {
       throw Exception(
@@ -38,7 +42,7 @@ class UserService {
   }
 
   Future<Users> getUserById(int id) async {
-    final response = await http.get(Uri.parse('$uri/$id'));
+    final response = await (client ?? http.Client()).get(Uri.parse('$uri/$id'));
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return Users.fromJson(json.decode(utf8.decode(response.bodyBytes)));
@@ -59,7 +63,8 @@ class UserService {
     List<Users> existingChatUsers = [];
 
     for (var id in existingChatUsersId) {
-      final response = await http.get(Uri.parse('$uri/$id'));
+      final response =
+          await (client ?? http.Client()).get(Uri.parse('$uri/$id'));
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         existingChatUsers

@@ -1,6 +1,5 @@
 import 'package:chambeape/infrastructure/models/users.dart';
 import 'dart:io';
-import 'package:chambeape/infrastructure/models/users.dart';
 import 'package:chambeape/presentation/screens/0_login/widgets/custom_radio_list_tile.dart';
 import 'package:chambeape/presentation/screens/0_login/widgets/image_picker_widget.dart';
 import 'package:chambeape/presentation/shared/enums/enum.dart';
