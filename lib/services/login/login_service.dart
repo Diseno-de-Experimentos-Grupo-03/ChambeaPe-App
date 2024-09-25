@@ -6,15 +6,19 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<Login> login(String email, String password) async {
+Future<Login> login(String email, String password,
+    {http.Client? client}) async {
+  client ??= http.Client();
+
   Map<String, dynamic> requestBody = {
     'email': email,
     'password': password,
   };
 
-  final uri = Uri.parse('https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/users/login');
+  final uri = Uri.parse(
+      'https://chambeapeapi-a4anbthqamgre7ce.eastus-01.azurewebsites.net/api/v1/users/login');
 
-  final response = await http.post(
+  final response = await client.post(
     uri,
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
