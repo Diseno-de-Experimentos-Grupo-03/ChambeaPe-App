@@ -83,7 +83,8 @@ class PostsdbDatasource extends PostsDataSource {
   @override
   Future<Post> updatePost(Post post) async {
     final Uri uri = Uri.parse(
-        'https://chambeape.azurewebsites.net/api/v1/posts/${post.id}');
+        '${UriEnvironment.baseUrl}/posts/${post.id}');
+
     final postModel = PostMapper.entityToPostModel(post);
 
     Map<String, dynamic> requestBody = {
@@ -117,7 +118,8 @@ class PostsdbDatasource extends PostsDataSource {
   @override
   Future<void> deletePost(String id) async {
     final Uri uri =
-        Uri.parse('https://chambeape.azurewebsites.net/api/v1/posts/$id');
+        // Uri.parse('https://chambeape.azurewebsites.net/api/v1/posts/$id');
+        Uri.parse('${UriEnvironment.baseUrl}/posts/$id');
 
     final response = await http.delete(
       uri,
